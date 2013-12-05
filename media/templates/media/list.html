@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tarsier</title>
+</head>
+<body>
+	<ul>
+		{% for file in files %}
+		<li>
+			<a href="{{ url_for('media.watch', hash=file.hash) }}">
+				{{ file.name }}
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+</body>
+</html>
