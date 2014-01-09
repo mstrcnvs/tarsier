@@ -3,17 +3,30 @@
 import os
 from hashlib import sha1
 
-from flask import current_app
+from flask import current_app, abort
 
 
-def find_media():
+def find_media(hash=None):
 	folder = current_app.config['MEDIA_FOLDER'].decode('utf-8')
-	return [
+	files = [
 		MediaFile(root, file)
 		for root, dirs, files in os.walk(folder)
 		for file in files
 		if os.path.splitext(file)[-1] in ['.avi', '.mp4']
 	]
+
+	if hash:
+		try:
+			media = filter(lambda f: f.hash == hash, files)
+			return media[0]
+		except IndexError:
+			return None
+	else:
+		return files
+
+
+def find_media_or_404(hash):
+	return find_media(hash=hash) or abort(404)
 
 
 class MediaFile(object):

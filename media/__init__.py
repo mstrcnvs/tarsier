@@ -2,8 +2,8 @@
 
 from __future__ import absolute_import
 
-from flask import Blueprint, render_template, abort
-from media.utils import find_media
+from flask import Blueprint, render_template
+from media.utils import find_media, find_media_or_404
 
 media = Blueprint('media', __name__, template_folder='templates')
 
@@ -16,25 +16,13 @@ def list():
 
 @media.route('/watch/<hash>/')
 def watch(hash):
-	files = find_media()
-
-	try:
-		media = filter(lambda f: f.hash == hash, files)
-		media = media[0]
-	except IndexError:
-		abort(404)
+	media = find_media_or_404(hash=hash)
 
 	return render_template('media/watch.html', media=media)
 
 
 @media.route('/stream/<hash>/')
 def stream(hash):
-	files = find_media()
-
-	try:
-		media = filter(lambda f: f.hash == hash, files)
-		media = media[0]
-	except IndexError:
-		abort(404)
+	media = find_media_or_404(hash=hash)
 
 	return ''
