@@ -8,5 +8,4 @@ tarsier.config.update(
 )
 
 if __name__ == '__main__':
-	# Run a development server
 	tarsier.run(debug=True)
