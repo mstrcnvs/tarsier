@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 import os
-import hashlib
+from hashlib import sha1
 
 from flask import current_app
 
@@ -21,4 +21,4 @@ class MediaFile(object):
 		self.root = root
 		self.name = name
 		self.full_path = os.path.join(root, name)
-		self.hash = hashlib.sha1(self.full_path.encode('utf-8')).hexdigest()[:8]
+		self.hash = sha1(self.full_path.encode('utf-8')).hexdigest()[:8]
