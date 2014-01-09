@@ -24,4 +24,17 @@ def watch(hash):
 	except IndexError:
 		abort(404)
 
-	return media.name
+	return render_template('media/watch.html', media=media)
+
+
+@media.route('/stream/<hash>/')
+def stream(hash):
+	files = find_media()
+
+	try:
+		media = filter(lambda f: f.hash == hash, files)
+		media = media[0]
+	except IndexError:
+		abort(404)
+
+	return ''
