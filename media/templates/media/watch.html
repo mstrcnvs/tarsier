@@ -1,12 +1,14 @@
 {% extends "tarsier/base.html" %}
 
 {% block content %}
+<a href="{{ url_for('media.list') }}">
+	&larr; Back to list
+</a>
 <div style="text-align:center;">
 	<h1>
 		{{ media.name }}
 	</h1>
 	<video src="{{ url_for('media.stream', hash=media.hash) }}">
-
 	</video>
 </div>
 {% endblock %}
