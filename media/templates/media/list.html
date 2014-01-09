@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Tarsier</title>
-</head>
-<body>
+{% extends "tarsier/base.html" %}
+
+{% block content %}
 	<ul>
 		{% for file in files %}
 		<li>
@@ -14,5 +10,4 @@
 		</li>
 		{% endfor %}
 	</ul>
-</body>
-</html>
+{% endblock content %}
