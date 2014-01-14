@@ -3,6 +3,9 @@
 *env
 *~
 
+# Media files
+media/
+
 # Distribution / packaging
 build/
 develop-eggs/

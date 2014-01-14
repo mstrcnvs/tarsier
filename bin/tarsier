@@ -3,7 +3,7 @@
 
 from tarsier.tarsier import tarsier
 
-tarsier.config['MEDIA_FOLDER'] = ''
+tarsier.config['MEDIA_FOLDER'] = 'media'
 
 if __name__ == '__main__':
         tarsier.run('0.0.0.0', debug=True)
