@@ -1,11 +1,9 @@
 # encoding: utf-8
 
-from __future__ import absolute_import
-
 import re
 
 from flask import Blueprint, Response, request, render_template
-from media.utils import find_media, find_media_or_404
+from tarsier.media.utils import find_media, find_media_or_404
 
 media = Blueprint('media', __name__, template_folder='templates')
 
