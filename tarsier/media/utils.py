@@ -1,24 +1,10 @@
 # encoding: utf-8
 
 import os
-from hashlib import sha1
 
 from flask import current_app, abort
 
-
-class MediaFile(object):
-	def __init__(self, root, name):
-		self.root = root
-		self.name = name
-		self.full_path = os.path.join(root, name)
-		self.hash = sha1(self.full_path.encode('utf-8')).hexdigest()[:8]
-		self.size = os.path.getsize(self.full_path)
-
-		_, ext = os.path.splitext(name)
-		if ext == '.ogg':
-			self.mimetype = 'video/ogg'
-		elif ext == '.mp4':
-			self.mimetype = 'video/mp4'
+from tarsier.media.file import MediaFile
 
 
 def find_media(hash=None):
