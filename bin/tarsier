@@ -1,0 +1,9 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+from tarsier import tarsier
+
+tarsier.config['MEDIA_FOLDER'] = '/home/rafael/Vídeos/Filmes/'
+
+if __name__ == '__main__':
+	tarsier.run('0.0.0.0', debug=True)
