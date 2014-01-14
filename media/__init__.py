@@ -10,7 +10,7 @@ from media.utils import find_media, find_media_or_404
 media = Blueprint('media', __name__, template_folder='templates')
 
 
-@media.route('/list/')
+@media.route('/')
 def list():
 	files = find_media()
 	return render_template('media/list.html', files=files)
