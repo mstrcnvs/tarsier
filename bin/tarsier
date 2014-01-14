@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-from tarsier import tarsier
+from tarsier.tarsier import tarsier
 
 tarsier.config['MEDIA_FOLDER'] = ''
 
