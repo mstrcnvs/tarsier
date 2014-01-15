@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 import os
+import sys
 
 from flask import current_app, abort
 
@@ -28,3 +29,18 @@ def find_media(hash=None):
 
 def find_media_or_404(hash):
 	return find_media(hash=hash) or abort(404)
+
+
+def get_appdir(appname=None):
+	if sys.platform == 'darwin':
+		from AppKit import NSSearchPathForDirectoriesInDomains
+		path = NSSearchPathForDirectoriesInDomains(14, 1, True)[0]
+	elif sys.platform == 'win32':
+		path = os.environ['APPDATA']
+	else:
+		path = os.environ.get('XDG_DATA_HOME', os.path.expanduser('~/.local/share'))
+
+	if appname:
+		path = os.path.join(path, appname)
+
+	return path

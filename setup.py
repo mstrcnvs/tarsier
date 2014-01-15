@@ -6,10 +6,10 @@ try:
 except ImportError:
 	from distutils.core import setup
 
-from tarsier import __version__
+from tarsier import __title__, __version__
 
 setup(
-	name='tarsier',
+	name=__title__,
 	version=__version__,
 	license='GPLv3',
 	url='https://github.com/mstrcnvs/tarsier/',
