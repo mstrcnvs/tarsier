@@ -103,22 +103,21 @@ class WebMediaFile(MediaFile):
 		root = os.path.join(get_appdir(__title__), 'webfiles', origin.hash)
 		name = origin.hash + '.' + self.extension.strip('. ')
 
-		if not self.exists(root, name):
-			self.create(root, name)
-
 		super(WebMediaFile, self).__init__(root, name)
+
+		if not self.exists():
+			self.create()
+
 		update_webfile(origin.hash, name)
 
-		self.hash = origin.hash
+	def exists(self):
+		return os.path.exists(self.full_path)
 
-	def exists(self, root, name):
-		return os.path.exists(os.path.join(root, name))
+	def create(self):
+		if not os.path.exists(self.root):
+			os.makedirs(self.root)
 
-	def create(self, root, name):
-		if not os.path.exists(root):
-			os.makedirs(root)
+		self.convert()
 
-		self.convert(root, name)
-
-	def convert(self, root, name):
-		shutil.copyfile(self.origin.full_path, os.path.join(root, name))
+	def convert(self):
+		shutil.copyfile(self.origin.full_path, self.full_path)
