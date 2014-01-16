@@ -17,5 +17,6 @@ setup(
 	scripts=['bin/tarsier'],
 	install_requires=[
 		'Flask==0.10.1',
+		'python-magic==0.4.6'
 	]
 )
