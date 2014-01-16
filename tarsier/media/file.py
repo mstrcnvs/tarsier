@@ -11,5 +11,11 @@ class MediaFile(object):
 		self.name = name
 		self.full_path = os.path.join(root, name)
 		self.hash = hashlib.sha1(self.full_path.encode('utf-8')).hexdigest()[:8]
-		self.size = os.path.getsize(self.full_path)
-		self.mimetype = magic.from_file(self.full_path, mime=True)
+
+	@property
+	def size(self):
+		return os.path.getsize(self.full_path)
+
+	@property
+	def mimetype(self):
+		return magic.from_file(self.full_path, mime=True)
